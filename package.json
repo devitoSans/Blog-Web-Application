@@ -1,0 +1,26 @@
+{
+  "name": "blog_web_application",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --no-warnings --enable-source-maps --loader ts-node/esm ./src/index.ts",
+    "dev:watch": "npx nodemon --watch ./src/ -e ts --exec \"npm run dev\"",
+    "dev:build": "tsc",
+    "prod": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "devitosanjaya@gmail.com",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
