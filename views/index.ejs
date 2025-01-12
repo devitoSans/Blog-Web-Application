@@ -1,11 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Web Application</title>
-</head>
-<body>
-  <h1>Hello World</h1>
-</body>
-</html>
+<%- include("./templates/header.ejs") %>
+
+<main class="homepage">
+  <div class="container1">
+    <h1 class="title">Welcome to a Blog Web Application!</h1>
+    <form action="/NewBlog" method="get">
+      <div>
+        <a href="/NewBlog">+ Create a New Blog!</a>
+      </div>
+      <!-- <button type="button">+ Create a New Blog!</button> -->
+    </form>
+    <div class="blogs">
+      <% if(locals.blogs) { %>
+        <% for(const id in blogs) { %>
+          <div class="blog">
+            <form action=<%= `/view/${id}` %> method="get"> <button type="button" class="b_view"><span><%= blogs[id].title %></span></button> </form>
+            <div class="vertical-rule"></div>  
+            <div>
+              <form action=<%= `/update/${id}` %> method="get"> <button type="button" class="b_upd">Update</button> </form>
+              <form action=<%= `/delete/${id}` %> method="post"> <button type="button" class="b_del">Delete</button> </form>
+            </div>
+          </div>
+        <% } %>
+      <% } else { %>
+        <h3>There is no blog yet... Create <a href="/NewBlog">one</a>!</h3>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include("./templates/footer.ejs") %>
