@@ -1,7 +1,10 @@
 import express from "express"
+import { data } from "./database/database"
 
 const app = express();
 const port = 3000;
+
+console.log(data["12"].title);
 
 app.use(express.static("public"));
 
