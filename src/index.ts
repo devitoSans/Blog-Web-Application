@@ -1,5 +1,5 @@
 import express from "express"
-import { data } from "./database/database"
+import { data } from "./database/database.js"
 
 const app = express();
 const port = 3000;
