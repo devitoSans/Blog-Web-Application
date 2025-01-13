@@ -11,13 +11,14 @@
     </form>
     <div class="blogs">
       <% if(locals.blogs) { %>
+        <%# console.log((blogs)) %>
         <% for(const id in blogs) { %>
           <div class="blog">
-            <form action=<%= `/view/${id}` %> method="get"> <button type="button" class="b_view"><span><%= blogs[id].title %></span></button> </form>
+            <form action=<%= `/view/${id}` %> method="get"> <button type="submit" class="b_view"><span><%= blogs[id].title %></span></button> </form>
             <div class="vertical-rule"></div>  
             <div>
-              <form action=<%= `/update/${id}` %> method="get"> <button type="button" class="b_upd">Update</button> </form>
-              <form action=<%= `/delete/${id}` %> method="post"> <button type="button" class="b_del">Delete</button> </form>
+              <form action=<%= `/update/${id}` %> method="get"> <button type="submit" class="b_upd">Update</button> </form>
+              <form action=<%= `/delete/${id}` %> method="post"> <button type="submit" class="b_del">Delete</button> </form>
             </div>
           </div>
         <% } %>

@@ -1,7 +1,7 @@
 interface blog {
-    id: string;
-    date: Date;
+    date: string;
     title: string;
+    author: string;
     body: string;
 };
 
@@ -11,11 +11,4 @@ interface blogs {
 
 let data: blogs = {};
 
-data[12] = {
-    id: "12",
-    date: new Date(),
-    title: "asfd",
-    body: ""
-}
-
-export {data};
+export default data;
