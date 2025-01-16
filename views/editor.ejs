@@ -1,0 +1,22 @@
+<%- include("./templates/header.ejs") %>
+
+<main>
+  <h1><%= (locals.status === "update" ? "Update" : "New") %> Blog</h1>
+  <form action="<%= locals.route %>" method="post">
+    <label for="title">Title</label>
+    <input name="title" type="text" id="title" value="<%= locals.title %>">
+
+    <label for="author">Author</label>
+    <input name="author" type="text" id="author" value="<%= locals.author %>">
+
+    <label for="body">Body</label>
+    <textarea name="body" id="body"><%= locals.body %></textarea>
+
+    <button type="submit"><%= locals.status === "update" ? "Update" : "Create" %></button>
+  </form>
+  <form action="/" method="get">
+    <button type="submit">Cancel</button>
+  </form>
+</main>
+
+<%- include("./templates/footer.ejs") %>

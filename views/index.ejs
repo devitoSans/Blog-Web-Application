@@ -3,18 +3,14 @@
 <main class="homepage">
   <div class="container1">
     <h1 class="title">Welcome to a Blog Web Application!</h1>
-    <form action="/NewBlog" method="get">
-      <div>
-        <a href="/NewBlog">+ Create a New Blog!</a>
-      </div>
-      <!-- <button type="button">+ Create a New Blog!</button> -->
+    <form action="/create" method="get">
+      <button type="submit">+ Create a New Blog!</button>
     </form>
     <div class="blogs">
       <% if(locals.blogs) { %>
-        <%# console.log((blogs)) %>
-        <% for(const id in blogs) { %>
+        <% for(const id of blogs.keys()) { %>
           <div class="blog">
-            <form action=<%= `/view/${id}` %> method="get"> <button type="submit" class="b_view"><span><%= blogs[id].title %></span></button> </form>
+            <form action=<%= `/view/${id}` %> method="get"> <button type="submit" class="b_view"><span><%= blogs.get(id).title %></span></button> </form>
             <div class="vertical-rule"></div>  
             <div>
               <form action=<%= `/update/${id}` %> method="get"> <button type="submit" class="b_upd">Update</button> </form>
@@ -23,7 +19,7 @@
           </div>
         <% } %>
       <% } else { %>
-        <h3>There is no blog yet... Create <a href="/NewBlog">one</a>!</h3>
+        <h3>There is no blog yet... Create <a href="/create">one</a>!</h3>
       <% } %>
     </div>
   </div>
