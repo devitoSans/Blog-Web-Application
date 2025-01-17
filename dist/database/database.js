@@ -1,33 +1,31 @@
 ;
 ;
-class Database {
-    constructor() {
-        this.data = {};
-    }
+const Database = Object.freeze({
+    __data__: {},
     get(id) {
-        return Object.freeze(this.data[id]);
-    }
+        return Object.freeze(this.__data__[id]);
+    },
     set(id, blog) {
-        this.data[id] = blog;
-    }
+        this.__data__[id] = blog;
+    },
     delete(id) {
-        delete this.data[id];
-    }
+        delete this.__data__[id];
+    },
     isEmtpy() {
-        return Object.keys(this.data).length === 0;
-    }
+        return Object.keys(this.__data__).length === 0;
+    },
     isIdExists(id) {
-        return id in this.data;
-    }
+        return id in this.__data__;
+    },
     [Symbol.iterator]() {
-        return Object.entries(this.data);
-    }
+        return Object.entries(this.__data__);
+    },
     keys() {
-        return Object.keys(this.data);
-    }
+        return Object.keys(this.__data__);
+    },
     values() {
-        return Object.values(this.data);
+        return Object.values(this.__data__);
     }
-}
+});
 /** EXPORT */
-export default new Database();
+export default Database;

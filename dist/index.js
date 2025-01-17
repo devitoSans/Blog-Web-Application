@@ -2,11 +2,9 @@ import express from "express";
 import database from "./database/database.js";
 import editor from "./editor/editor.js";
 // TODO 
-// 1. Refactor all of this.
-// 2. the body is not being able to display the new line. fix that. (can de done using css's white-space: wrap;)
-// 3. Maybe seperate the ejs files for creating and updating?
-// 4. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
-// 5. Style the page.
+// 1. the body is not being able to display the new line. fix that. (can de done using css's white-space: wrap;)
+// 2. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
+// 3. Style the page.
 const app = express();
 const port = 3000;
 app.use(express.static("public"))
@@ -30,7 +28,7 @@ app
     res.redirect("/");
 })
     .use("/notfound", (req, res) => {
-    res.send("<h1>404 Not Found</h1>");
+    res.render("notfound.ejs");
 })
     .use((req, res) => {
     res.redirect("/notfound");
