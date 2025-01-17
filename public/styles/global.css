@@ -1,0 +1,64 @@
+*, *::before, *::after {
+  /* Resetting */
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+
+  /* General Color */
+  --primary-color: white;
+  --secondary-color: whitesmoke;
+  --border-color: rgb(50, 50, 50);
+  --text-color: black;
+
+  /* Contrast Color */
+  --primary-contrast-color: rgb(0, 0, 0);
+  --secondary-contrast-color: rgb(0, 0, 0);
+  --text-contrast-color: whitesmoke;
+
+  /* General Font */
+  --title-font: "Chivo", serif;
+  --text-font: "Roboto", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--primary-color);
+}
+
+/* Styling for general title */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--title-font);
+}
+
+/* Styling for general text */
+* {
+  font-family: var(--text-font);
+  font-size: 1.03rem;
+}
+
+/* Styling for general button  */
+form.button-container {
+  display: inline-flex;
+  justify-content: center;
+}
+
+form.button-container > button {
+  min-width: max-content;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+form.button-container > button:hover {
+  background-color: var(--secondary-contrast-color);
+  color: var(--text-contrast-color);
+}
+
+/* Styling for Vertical Line (for sections' separation) */
+.vertical-line {
+  border-left: 1px solid var(--border-color);
+  height: 100%;
+}

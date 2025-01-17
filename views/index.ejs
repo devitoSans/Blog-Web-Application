@@ -1,25 +1,29 @@
 <%- include("./templates/header.ejs") %>
 
+<link rel="stylesheet" href="./styles/index.css">
+
 <main class="homepage">
-  <div class="container1">
-    <h1 class="title">Welcome to a Blog Web Application!</h1>
-    <form action="/create" method="get">
-      <button type="submit">+ Create a New Blog!</button>
-    </form>
-    <div class="blogs">
+  <div class="homepage-container">
+    <h1 class="homepage-title">Welcome to a Blog Web Application!</h1>
+    <% if(locals.blogs) { %>
+      <form action="/create" method="get" class="button-container">
+        <button type="submit">Create a New Blog!</button>
+      </form>
+    <% } %>
+    <div class="homepage-blog-list">
       <% if(locals.blogs) { %>
         <% for(const id of blogs.keys()) { %>
-          <div class="blog">
-            <form action=<%= `/view/${id}` %> method="get"> <button type="submit" class="b_view"><span><%= blogs.get(id).title %></span></button> </form>
-            <div class="vertical-rule"></div>  
-            <div>
-              <form action=<%= `/update/${id}` %> method="get"> <button type="submit" class="b_upd">Update</button> </form>
-              <form action=<%= `/delete/${id}` %> method="post"> <button type="submit" class="b_del">Delete</button> </form>
+          <div class="homepage-blog">
+            <form action=<%= `/view/${id}` %> method="get" class="button-container"> <button type="submit" id="homepage-blog-button-view"><span><%= blogs.get(id).title %></span></button> </form>
+            <div class="vertical-line"></div>  
+            <div class="homepage-blog-action-buttons">
+              <form action=<%= `/update/${id}` %> method="get" class="button-container"> <button type="submit" id="homepage-blog-button-update">Update</button> </form>
+              <form action=<%= `/delete/${id}` %> method="post" class="button-container"> <button type="submit" id="homepage-blog-button-delete">Delete</button> </form>
             </div>
           </div>
         <% } %>
       <% } else { %>
-        <h3>There is no blog yet... Create <a href="/create">one</a>!</h3>
+        <h3>There is no blog yet... <a href="/create">Create one</a>!</h3>
       <% } %>
     </div>
   </div>

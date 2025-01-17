@@ -1,106 +1,128 @@
-/* TODO:
-  Write a proper documentation for this.
+/*
+  Styles for homepage.
 */
 
-body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.title {
-  margin-bottom: 3%;
-}
-
+/* Homepage layout */
 .homepage {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.container1 {
-  display: flex;  
-  flex-direction: column;
-  align-items: center;
-}
-
-form {
-  display: inline-flex;
-  justify-content: center;
-  margin: 0;
-}
-
-form > button {
-  min-width: max-content;
-}
-
-.blogs {
+.homepage-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  align-items: center;
+  margin: 2rem 0rem 2rem 0rem;
+}
+
+.homepage-title {
+  margin-bottom: 3%;
+  font-family: var(--title-font);
+  font-size: 3rem;
+}
+
+
+/* Homepage's New Blog's Button */
+.homepage-container > form.button-container > button {
+  background-color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.homepage-container > .button-container > button:hover {
+  background-color: green;
+}
+
+/* Homepage's Blog List */
+.homepage-blog-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
   margin-top: 5%;
   padding: 2%;
-  border: 1px black solid;
-  border-radius: 5px;
+  /* border: 1px var(--border-color) solid; */
+  border-radius: 30px;
+  background-color: var(--secondary-color);
   width: 80%;
+  overflow-y: auto;
+  max-height: 30rem;
 }
 
-.blog {
+/* Homepage's Blog */
+.homepage-blog {
   display: grid;
   grid-template-columns: 3fr 1.5fr;
   grid-template-rows: 1fr;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin: 1% 0%;;
   border: 1px black solid;
   padding: 1%;
   border-radius: 999px;
 }
 
-.blog > form {
+.homepage-blog > form.button-container {
   grid-column: 1 / span 1;
   min-width: min-content;
 }
 
-.blog button {
+.homepage-blog form.button-container > button {
   border: 0px;
-  background-color: inherit;
 }
 
-#b_view {
+/* Homepage's Blog's View Button */
+#homepage-blog-button-view {
   min-width: min-content;
 }
 
-#b_view > span {
+#homepage-blog-button-view > span {
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 30ch;
+  max-width: 15rem;
   text-overflow: ellipsis;
-  min-width: 1ch;
+  min-width: 1rem;
 }
 
-.blog > p {
-  grid-column-start: 2;
-  grid-column-end: 2;
-  display: inline-block;
-  text-align: center;
-  grid-row-start: 1;
-  grid-row-end: 1;
-}
-
-.vertical-rule {
-  border-left: 1px solid #000;
-  height: 100%;
+/* Homepage's Blog's Vertical Line */
+/* Seperation line between view button 
+   and action buttons (update and delete)*/
+.vertical-line {
   grid-column-start: 2;
   grid-column-end: 2;
   justify-self: center;
 }
 
-.blog > div {
+/* Homepage's Blog's Action Buttons */
+.homepage-blog-action-buttons {  
   min-width: max-content;
   grid-column-start: -1;
   grid-column-end: span -1;
   display: flex;
+}
+
+#homepage-blog-button-update:hover {
+  background-color: #1F51FF;
+}
+
+#homepage-blog-button-delete:hover {
+  background-color: red;
+}
+
+/* Homepage's "No Blog" text */
+.homepage-blog-list > h3, .homepage-blog-list a {
+  font-size: 2rem;
+  font-family: var(--title-font);
+}
+
+.homepage-blog-list a {
+  color: rebeccapurple;
+  border-radius: 10px;
+  padding: 0rem 0.5rem;
+  text-decoration: none;
+  transition: color, background-color 0.3s ease-in-out 0s;
+}
+
+.homepage-blog-list a:hover {
+  color: var(--text-contrast-color);
+  background-color: green;
 }

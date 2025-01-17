@@ -33,7 +33,7 @@ app
     res.redirect("/");
 })
 .use("/notfound", (req, res) => {
-    res.send("<h1>404 Not Found</h1>");
+    res.render("notfound.ejs");
 })
 .use((req, res) => {
     res.redirect("/notfound");
