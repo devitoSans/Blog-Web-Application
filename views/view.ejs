@@ -1,16 +1,22 @@
 <%- include("./templates/header.ejs") %>
 
-<main>
-  <p><%= blog.author %></p>
-  <p><%= blog.date%></p>
-  <h1><%= blog.title %></h1>
-  <p><%= blog.body %></p>
-  <form action=<%= `/update/${id}` %> method="get">
-    <button type="submit">Update</button>
-  </form>
-  <form action=<%= `/` %> method="get">
-    <button type="submit">Back</button>
-  </form>
+<link rel="stylesheet" href="../public/styles/view.css">
+
+<main class="view">
+  <h1 class="view-title"><%= blog.title %></h1>
+  <div class="view-info">
+    <p class="view-info-date"><%= blog.date%></p>
+    <p class="view-info-author"><%= blog.author %></p>
+  </div>
+  <p class="view-content"><%= blog.body %></p>
+  <div class="view-actions">
+    <form action=<%= `/update/${id}` %> method="get" class="view-actions-update button-container">
+      <button type="submit">Update</button>
+    </form>
+    <form action=<%= `/` %> method="get" class="view-actions-back button-container">
+      <button type="submit">Back</button>
+    </form>
+  </div>
 </main>
 
 <%- include("./templates/footer.ejs") %>

@@ -1,0 +1,71 @@
+/*
+  Styles for View Page
+*/
+
+/* View page's layout */
+.view {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 6rem 10rem 5fr 10rem 5rem;
+  padding: 1rem;
+}
+
+/* View's title */
+.view-title {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+/* View's info */
+.view-info {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 1rem 0 2rem 0;
+}
+
+.view-info-date {
+  margin: 0 0 0.5rem 0;
+}
+
+/* View's content */
+.view-content {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* View's actions */
+.view-actions {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+/* View's actions update */
+.view-actions-update {
+  margin: 0 1rem 0 0;
+}
+
+.view-actions-update button:hover {
+  margin: 0 0 1rem 0;
+  background-color: green;
+}
+
+/* View's actions back */
+.view-actions-back button:hover {
+  margin: 0 0 1rem 0;
+  background-color: red;
+}

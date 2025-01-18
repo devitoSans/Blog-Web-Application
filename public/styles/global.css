@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-.button-container > button {
+.button-container > button, .button-container > a {
   min-width: max-content;
   padding: 0.5rem;
   border: 1px solid var(--border-color);
@@ -50,9 +50,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--secondary-color);
   color: var(--text-color);
   transition: all 0.3s ease-in-out 0s;
+  text-decoration: none;
 }
 
-.button-container > button:hover {
+.button-container > button:hover, .button-container > a:hover {
   background-color: var(--secondary-contrast-color);
   color: var(--text-contrast-color);
 }
