@@ -1,6 +1,6 @@
 <%- include("./templates/header.ejs") %>
 
-<link rel="stylesheet" href="./styles/index.css">
+<link rel="stylesheet" href="./public/styles/index.css">
 
 <main class="homepage">
   <div class="homepage-container">
@@ -14,11 +14,11 @@
       <% if(locals.blogs) { %>
         <% for(const id of blogs.keys()) { %>
           <div class="homepage-blog">
-            <form action=<%= `/view/${id}` %> method="get" class="button-container"> <button type="submit" id="homepage-blog-button-view"><span><%= blogs.get(id).title %></span></button> </form>
+            <form action=<%= `/view/${id}` %> method="get" class="button-container"> <button type="submit" class="homepage-blog-button-view"><span><%= blogs.get(id).title %></span></button> </form>
             <div class="vertical-line"></div>  
             <div class="homepage-blog-action-buttons">
-              <form action=<%= `/update/${id}` %> method="get" class="button-container"> <button type="submit" id="homepage-blog-button-update">Update</button> </form>
-              <form action=<%= `/delete/${id}` %> method="post" class="button-container"> <button type="submit" id="homepage-blog-button-delete">Delete</button> </form>
+              <form action=<%= `/update/${id}` %> method="get" class="button-container"> <button type="submit" class="homepage-blog-button-update">Update</button> </form>
+              <form action=<%= `/delete/${id}` %> method="post" class="button-container"> <button type="submit" class="homepage-blog-button-delete">Delete</button> </form>
             </div>
           </div>
         <% } %>

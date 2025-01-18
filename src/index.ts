@@ -11,15 +11,15 @@ import { guidGenerator } from "./utilities/utilities.js";
 const app = express();
 const port = 3000;
 
-app.use(express.static("public"))
+app.use("/public", express.static("public"))
    .use(express.urlencoded({ extended: true }));
 
 app
 .get("/", (req, res) => {
     res.render("index.ejs", { blogs: ( database.isEmtpy() ? undefined : database) });
 })
-.use(editor("create"))
-.use(editor("update"))
+.use(editor("Create"))
+.use(editor("Update"))
 .get("/view/:id", (req, res) => {
     const { id } = req.params;
     if(!database.isIdExists(id)) {

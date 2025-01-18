@@ -2,7 +2,7 @@ import { Router } from "express";
 import database from "../database/database.js";
 import { guidGenerator } from "../utilities/utilities.js";
 function editor(status) {
-    const method = status === "create" ? Create : Update;
+    const method = status === "Create" ? Create : Update;
     const params = method.params;
     const editor = Router();
     editor.get(params.route, method.routeGet)
@@ -12,7 +12,7 @@ function editor(status) {
 ;
 const Create = {
     params: {
-        status: "create",
+        status: "Create",
         route: "/create",
         title: "",
         body: "",
@@ -26,13 +26,14 @@ const Create = {
         const { title, author, body } = req.body;
         const id = guidGenerator();
         const date = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-        database.set(id, { date: date, title: title, author: author, body: body });
+        // vvvv This part is what I am talking about. 
+        database.set(id, { date: date, title: title || "Untitled Blog", author: author || "Anonymous", body: body });
         return res.redirect("/");
     }
 };
 const Update = {
     params: {
-        status: "update",
+        status: "Update",
         route: "/update/:id",
         title: "",
         body: "",

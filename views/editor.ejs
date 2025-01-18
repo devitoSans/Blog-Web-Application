@@ -1,22 +1,38 @@
 <%- include("./templates/header.ejs") %>
 
-<main>
-  <h1><%= (locals.status === "update" ? "Update" : "New") %> Blog</h1>
-  <form action="<%= locals.route %>" method="post">
-    <label for="title">Title</label>
-    <input name="title" type="text" id="title" value="<%= locals.title %>">
+<link rel="stylesheet" href="../public/styles/editor.css">
 
-    <label for="author">Author</label>
-    <input name="author" type="text" id="author" value="<%= locals.author %>">
+<main class="editor">
+  <h1 class="editor-title"><%= locals.status %> Blog</h1>
 
-    <label for="body">Body</label>
-    <textarea name="body" id="body"><%= locals.body %></textarea>
-
-    <button type="submit"><%= locals.status === "update" ? "Update" : "Create" %></button>
+  <form action="<%= locals.route %>" method="post" id="editor-form">
+    <div class="editor-form-texttype">
+      <div class="editor-form-fields editor-form-title">
+        <label for="editor-form-field-title">Title</label>
+        <input name="title" type="text" id="editor-form-field-title" value="<%= locals.title %>">
+      </div>
+      <div class="editor-form-fields editor-form-author">
+        <label for="editor-form-field-author">Author</label>
+        <input name="author" type="text" id="editor-form-field-author" value="<%= locals.author %>">
+      </div>
+    </div>
+    <div class="editor-form-fields">
+      <label for="editor-form-field-content">Content</label>
+      <%# Requires to add that 'cols=5000px', so it has a resposive width's size %>
+      <textarea name="body" id="editor-form-field-content" cols="5000px"><%= locals.body %></textarea>
+    </div>
   </form>
-  <form action="/" method="get">
-    <button type="submit">Cancel</button>
-  </form>
+
+  <div class="editor-actions">
+    <div class="editor-actions-submit button-container">
+      <button form="editor-form" type="submit"><%= locals.status %></button>
+    </div>
+    <form action="/" method="get" class="editor-actions-cancel button-container">
+      <button type="submit">Cancel</button>
+    </form>
+  </div>
 </main>
+
+<script src="../public/scripts/editor.js"></script>
 
 <%- include("./templates/footer.ejs") %>

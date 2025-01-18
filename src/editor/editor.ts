@@ -2,7 +2,13 @@ import { Request, Response, NextFunction, Router } from "express";
 import database, { Blog } from "../database/database.js";
 import { guidGenerator } from "../utilities/utilities.js";
 
-type EditorStatus = "create" | "update";
+/**
+ * TODO
+ * refactor this again. as you can see, when trying to add a default value,
+ * it is really tedious and unclean.
+ */
+
+type EditorStatus = "Create" | "Update";
 
 interface EditorParams extends Blog {
     status: EditorStatus;
@@ -10,7 +16,7 @@ interface EditorParams extends Blog {
 }
 
 function editor(status: EditorStatus) {
-    const method = status === "create" ? Create : Update;
+    const method = status === "Create" ? Create : Update;
     const params = method.params;
 
     const editor = Router();
@@ -22,7 +28,7 @@ function editor(status: EditorStatus) {
 
 const Create = {
     params: {
-        status: "create",
+        status: "Create",
         route: "/create",
         title: "",
         body: "",
@@ -39,14 +45,15 @@ const Create = {
         const id = guidGenerator();
         const date = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" } as object);
 
-        database.set(id, { date: date, title: title, author: author, body: body });
+        // vvvv This part is what I am talking about. 
+        database.set(id, { date: date, title: title || "Untitled Blog", author: author || "Anonymous", body: body });
         return res.redirect("/");
     }
 };
 
 const Update = {
     params: {
-        status: "update",
+        status: "Update",
         route: "/update/:id",
         title: "",
         body: "",

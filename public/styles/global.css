@@ -37,12 +37,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Styling for general button  */
-form.button-container {
+.button-container {
   display: inline-flex;
   justify-content: center;
 }
 
-form.button-container > button {
+.button-container > button {
   min-width: max-content;
   padding: 0.5rem;
   border: 1px solid var(--border-color);
@@ -52,7 +52,7 @@ form.button-container > button {
   transition: all 0.3s ease-in-out 0s;
 }
 
-form.button-container > button:hover {
+.button-container > button:hover {
   background-color: var(--secondary-contrast-color);
   color: var(--text-contrast-color);
 }

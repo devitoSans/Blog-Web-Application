@@ -70,11 +70,11 @@
 }
 
 /* Homepage's Blog's View Button */
-#homepage-blog-button-view {
+.homepage-blog-button-view {
   min-width: min-content;
 }
 
-#homepage-blog-button-view > span {
+.homepage-blog-button-view > span {
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -100,11 +100,11 @@
   display: flex;
 }
 
-#homepage-blog-button-update:hover {
+button.homepage-blog-button-update:hover {
   background-color: #1F51FF;
 }
 
-#homepage-blog-button-delete:hover {
+button.homepage-blog-button-delete:hover {
   background-color: red;
 }
 
