@@ -24,12 +24,12 @@
 
 
 /* Homepage's New Blog's Button */
-.homepage-container > form.button-container > button {
+.homepage-container > .button-container > a {
   background-color: var(--primary-color);
   font-size: 1.5rem;
 }
 
-.homepage-container > .button-container > button:hover {
+.homepage-container > .button-container > a:hover {
   background-color: green;
 }
 
@@ -60,12 +60,12 @@
   border-radius: 999px;
 }
 
-.homepage-blog > form.button-container {
+.homepage-blog > .button-container {
   grid-column: 1 / span 1;
   min-width: min-content;
 }
 
-.homepage-blog form.button-container > button {
+.homepage-blog .button-container > * {
   border: 0px;
 }
 
@@ -100,21 +100,21 @@
   display: flex;
 }
 
-button.homepage-blog-button-update:hover {
+.homepage-blog-button-update:hover {
   background-color: #1F51FF;
 }
 
-button.homepage-blog-button-delete:hover {
+.homepage-blog-button-delete:hover {
   background-color: red;
 }
 
 /* Homepage's "No Blog" text */
-.homepage-blog-list > h3, .homepage-blog-list a {
+.homepage-blog-list > h3, .homepage-blog-list h3 > a {
   font-size: 2rem;
   font-family: var(--title-font);
 }
 
-.homepage-blog-list a {
+.homepage-blog-list h3 > a {
   color: rebeccapurple;
   border-radius: 10px;
   padding: 0rem 0.5rem;
@@ -122,7 +122,7 @@ button.homepage-blog-button-delete:hover {
   transition: color, background-color 0.3s ease-in-out 0s;
 }
 
-.homepage-blog-list a:hover {
+.homepage-blog-list h3 > a:hover {
   color: var(--text-contrast-color);
   background-color: green;
 }

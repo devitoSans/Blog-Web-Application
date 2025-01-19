@@ -10,12 +10,12 @@
   </div>
   <p class="view-content"><%= blog.body %></p>
   <div class="view-actions">
-    <form action=<%= `/update/${id}` %> method="get" class="view-actions-update button-container">
-      <button type="submit">Update</button>
-    </form>
-    <form action=<%= `/` %> method="get" class="view-actions-back button-container">
-      <button type="submit">Back</button>
-    </form>
+    <div class="view-actions-update button-container">
+      <a href="/update/<%= id %>">Update</a>
+    </div>
+    <div class="view-actions-back button-container">
+      <a href="/">Back</a>
+    </div>
   </div>
 </main>
 

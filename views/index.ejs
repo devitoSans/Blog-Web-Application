@@ -6,18 +6,18 @@
   <div class="homepage-container">
     <h1 class="homepage-title">Welcome to a Blog Web Application!</h1>
     <% if(locals.blogs) { %>
-      <form action="/create" method="get" class="button-container">
-        <button type="submit">Create a New Blog!</button>
-      </form>
+      <div class="button-container">
+        <a href="/create">Create a New Blog!</a>
+      </div>
     <% } %>
     <div class="homepage-blog-list">
       <% if(locals.blogs) { %>
         <% for(const id of blogs.keys()) { %>
           <div class="homepage-blog">
-            <form action=<%= `/view/${id}` %> method="get" class="button-container"> <button type="submit" class="homepage-blog-button-view"><span><%= blogs.get(id).title %></span></button> </form>
+            <div class="button-container"> <a href=<%= `/view/${id}` %> class="homepage-blog-button-view"><span><%= blogs.get(id).title %></span></a> </div>
             <div class="vertical-line"></div>  
             <div class="homepage-blog-action-buttons">
-              <form action=<%= `/update/${id}` %> method="get" class="button-container"> <button type="submit" class="homepage-blog-button-update">Update</button> </form>
+              <div class="button-container"> <a href=<%= `/update/${id}` %> class="homepage-blog-button-update">Update</a> </div>
               <form action=<%= `/delete/${id}` %> method="post" class="button-container"> <button type="submit" class="homepage-blog-button-delete">Delete</button> </form>
             </div>
           </div>
