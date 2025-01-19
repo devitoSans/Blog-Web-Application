@@ -40,8 +40,8 @@
   grid-column: 2 / 3;
   grid-row: 3 / 4;
   display: flex;
-  justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
 }
 
 /* View's actions */

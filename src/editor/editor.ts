@@ -26,6 +26,9 @@ function editor(status: EditorStatus) {
     return editor;
 };
 
+// const 
+
+
 const Create = {
     params: {
         status: "Create",
@@ -41,7 +44,9 @@ const Create = {
     },
 
     routePost(req: Request, res: Response, next: NextFunction) {
-        const { title, author, body } = req.body;
+        let { title, author, body } = req.body as { title: string, author: string, body: string };
+        body = body.replace(/\r\n/g, "<br>");
+
         const id = guidGenerator();
         const date = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" } as object);
 
@@ -68,12 +73,13 @@ const Update = {
         }
 
         Update.params.route = `/update/${id}`;
-        Update.params = { ...Update.params, ...database.get(id) };
+        Update.params = { ...Update.params, ...{ ...database.get(id), body: database.get(id).body.replace(/<br>/g, "\r\n") } };
         return res.render("editor.ejs", Update.params);
     },
 
     routePost(req: Request, res: Response, next: NextFunction) {
-        const { title, author, body } = req.body;
+        let { title, author, body } = req.body;
+        body = body.replace(/\r\n/g, "<br>");
         const { id } = req.params;
 
         database.set(id, { ...database.get(id), title, author, body });

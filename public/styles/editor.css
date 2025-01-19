@@ -75,7 +75,7 @@
 #editor-form-field-content {
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   height: 100%;
   resize: none;
 }

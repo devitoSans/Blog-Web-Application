@@ -8,7 +8,7 @@
     <p class="view-info-date"><%= blog.date%></p>
     <p class="view-info-author"><%= blog.author %></p>
   </div>
-  <p class="view-content"><%= blog.body %></p>
+  <p class="view-content"><%- blog.body %></p>
   <div class="view-actions">
     <div class="view-actions-update button-container">
       <a href="/update/<%= id %>">Update</a>

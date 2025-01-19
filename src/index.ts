@@ -4,11 +4,9 @@ import editor from "./editor/editor.js";
 import { guidGenerator } from "./utilities/utilities.js";
 
 // TODO 
-// 1. the body is not being able to display the new line. fix that. (can de done using css's white-space: wrap;)
-//    (or check out this: https://stackoverflow.com/questions/37458095/put-a-new-line-in-p-tag)
-// 2. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
-// 3. Make the wesbite responsive.
-// 4. Refactor the editor.ts file.
+// 1. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
+// 2. Make the wesbite responsive.
+// 3. Refactor the editor.ts file.
 
 const app = express();
 const port = 3000;
