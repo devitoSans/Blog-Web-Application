@@ -78,6 +78,7 @@
   overflow-y: auto;
   height: 100%;
   resize: none;
+  line-height: 1.5rem;
 }
 
 /* Editor's Action */

@@ -2,9 +2,9 @@ import express from "express";
 import database from "./database/database.js";
 import editor from "./editor/editor.js";
 // TODO 
-// 1. the body is not being able to display the new line. fix that. (can de done using css's white-space: wrap;)
-// 2. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
-// 3. Style the page.
+// 1. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
+// 2. Make the wesbite responsive.
+// 3. Refactor the editor.ts file.
 const app = express();
 const port = 3000;
 app.use("/public", express.static("public"))
@@ -13,14 +13,33 @@ app
     .get("/", (req, res) => {
     res.render("index.ejs", { blogs: (database.isEmtpy() ? undefined : database) });
 })
-    .use(editor("Create"))
-    .use(editor("Update"))
+    .use(editor())
     .get("/view/:id", (req, res) => {
     const { id } = req.params;
     if (!database.isIdExists(id)) {
         return res.redirect("/notfound");
     }
-    return res.render("view.ejs", { id: id, blog: database.get(id) });
+    const body = database.get(id, "body");
+    let params = Object.assign(Object.assign({}, database.get(id)), { content: [""] });
+    params.content.pop();
+    let temp = "";
+    let j = 0;
+    let target = "\r\n";
+    for (let i = 0; i < body.length; i++) {
+        temp += body[i];
+        if (body[i] === target[j]) {
+            j++;
+            if (j >= target.length) {
+                // if(temp === "\r\n") temp = "&nbsp;";
+                params.content.push(temp);
+                temp = "";
+                j = 0;
+            }
+        }
+    }
+    if ((temp !== ""))
+        params.content.push(temp);
+    return res.render("view.ejs", Object.assign({ id: id }, params));
 })
     .post("/delete/:id", (req, res) => {
     const { id } = req.params;

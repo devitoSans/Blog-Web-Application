@@ -3,12 +3,17 @@
 <link rel="stylesheet" href="../public/styles/view.css">
 
 <main class="view">
-  <h1 class="view-title"><%= blog.title %></h1>
+  <h1 class="view-title"><%= title %></h1>
   <div class="view-info">
-    <p class="view-info-date"><%= blog.date%></p>
-    <p class="view-info-author"><%= blog.author %></p>
+    <p class="view-info-date">Created on: <%= createdOn%></p>
+    <p class="view-info-date">Last Update on: <%= lastUpdateOn%></p>
+    <p class="view-info-author"><strong><%= author %></strong></p>
   </div>
-  <p class="view-content"><%- blog.body %></p>
+  <div class="view-content">
+    <% for(const line of content) { %>
+      <p class="view-content-line"><%= line %></p>
+    <% } %>
+  </div>
   <div class="view-actions">
     <div class="view-actions-update button-container">
       <a href="/update/<%= id %>">Update</a>

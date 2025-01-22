@@ -1,5 +1,21 @@
 <%- include("./templates/header.ejs") %>
 
+<%#
+  The reason why we are going back (using "../" instead of "./") once is
+  because when in the "[domain_name]/update/:id", the directory it is 
+  being shown is in "[domain_name]/update/" and not "[domain_name]/" 
+
+  For example, if we did not go back, then the <link> element would 
+  be looking for the css file in "[domain_name]/update/public/". 
+  
+  This is a problem since it should be looking for in 
+  "[domain_name]/public/", the location where we have originally 
+  specified.
+
+  Side note: [domain_name] here is something like "google.com", "gov.id",
+  etc. If you are currently running this locally, then most of the time
+  it would be "localhost:3000" (unless you change the port).
+ %>
 <link rel="stylesheet" href="../public/styles/editor.css">
 
 <main class="editor">

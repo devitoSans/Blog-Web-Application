@@ -1,15 +1,92 @@
 ;
+function isABlog(object) {
+    return ("title" in object && "author" in object && "body" in object);
+}
 ;
+const Normalizers = {
+    use(handler) {
+        return this;
+    }
+};
+// interface Normalizers {
+//     use: (value: Blog | string, next?: Normalizers) => Normalizers;
+// }
+// const defaultNormalizers: Normalizers = {
+//     use(value) {
+//     }
+// }
+// const ContentNomalizer: Normalizers = {
+//     use(value, next) {
+//         let newValue = value;
+//         if(next) {
+//             return next.use(newValue);
+//         }
+//         return newValue;
+//     }
+// }
+function normalizeContentInput(blog) {
+    let body = blog.body.replace(/&nbsp;<br>/g, "\r\n")
+        //
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    return Object.assign(Object.assign({}, blog), { body: body });
+}
+function normalizeContentOutput(blog) {
+    let body = blog.body.replace(/\r\n/g, "&nbsp;<br>");
+    return Object.assign(Object.assign({}, blog), { body: body });
+}
 const Database = Object.freeze({
     __data__: {},
-    get(id) {
-        return Object.freeze(this.__data__[id]);
+    /**
+     * Get a specific blog or its property.
+     *
+     * @param id - Blog's ID
+     * @param property - If specified, one of the blog's property (e.g. "title", "author", "body", etc)
+     * @returns If ```property``` is specified, then it will only return the value of the given property. Otherwise, a whole blog will be returned. If the ID given does not exist, it will return ```undefined```
+     */
+    get(id, property) {
+        if (!this.isIdExists(id)) {
+            return undefined;
+        }
+        // this.__data__[id] = normalizeContentOutput(this.__data__[id]);
+        if (property) {
+            return this.__data__[id][property];
+        }
+        else {
+            return Object.freeze(this.__data__[id]);
+        }
     },
-    set(id, blog) {
-        this.__data__[id] = blog;
+    /**
+     * Set a new blog or a new value for its property
+     *
+     * @param id - Blog's ID
+     * @param blog - The new blog, or one of the blog's property (e.g. "title", "author", "body", etc)
+     * @param value - If ```blog``` is one of the blog's property, then this will be the new value of that property.
+     */
+    set(id, blog, value) {
+        if (isABlog(blog)) {
+            console.log(blog.body);
+            this.__data__[id] = blog;
+        }
+        else {
+            this.__data__[id][blog] = value;
+        }
+        // this.__data__[id] = normalizeContentInput(this.__data__[id]);
     },
+    /**
+     * Delete a specific blog using its ID.
+     *
+     * @param id - Blog's ID
+     * @returns ```true``` if there is such ID to be deleted, otherwise ```false```.
+     */
     delete(id) {
+        if (!this.isIdExists(id)) {
+            return false;
+        }
         delete this.__data__[id];
+        return true;
     },
     isEmtpy() {
         return Object.keys(this.__data__).length === 0;

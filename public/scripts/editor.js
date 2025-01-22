@@ -1,5 +1,5 @@
 // TODO
-// Refactor this.
+// Refactor this and give some comments.
 
 document.querySelectorAll("textarea").forEach(function(textarea) {
     let defaultHeight = 300;
