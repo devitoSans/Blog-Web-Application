@@ -7,7 +7,7 @@ import { splitIntoNewLines } from "./utilities/utilities.js";
 // 1. Maybe check the id in both "/update/d/:id" and "/delete/:id" if it exists in the database.
 // 2. Make the wesbite responsive.
 // 3. When copying the content of a blog, it will create unwanted new lines on each <p> element.
-//    Maybe it is due to <p> element's behaviour?
+//    Maybe it is due to <p> element's behaviour? (a possible solution is to manipulate a navigator object)
 
 const app = express();
 const port = 3000;
