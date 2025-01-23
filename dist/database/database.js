@@ -3,40 +3,6 @@ function isABlog(object) {
     return ("title" in object && "author" in object && "body" in object);
 }
 ;
-const Normalizers = {
-    use(handler) {
-        return this;
-    }
-};
-// interface Normalizers {
-//     use: (value: Blog | string, next?: Normalizers) => Normalizers;
-// }
-// const defaultNormalizers: Normalizers = {
-//     use(value) {
-//     }
-// }
-// const ContentNomalizer: Normalizers = {
-//     use(value, next) {
-//         let newValue = value;
-//         if(next) {
-//             return next.use(newValue);
-//         }
-//         return newValue;
-//     }
-// }
-function normalizeContentInput(blog) {
-    let body = blog.body.replace(/&nbsp;<br>/g, "\r\n")
-        //
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&apos;");
-    return Object.assign(Object.assign({}, blog), { body: body });
-}
-function normalizeContentOutput(blog) {
-    let body = blog.body.replace(/\r\n/g, "&nbsp;<br>");
-    return Object.assign(Object.assign({}, blog), { body: body });
-}
 const Database = Object.freeze({
     __data__: {},
     /**
@@ -50,7 +16,6 @@ const Database = Object.freeze({
         if (!this.isIdExists(id)) {
             return undefined;
         }
-        // this.__data__[id] = normalizeContentOutput(this.__data__[id]);
         if (property) {
             return this.__data__[id][property];
         }
@@ -66,14 +31,14 @@ const Database = Object.freeze({
      * @param value - If ```blog``` is one of the blog's property, then this will be the new value of that property.
      */
     set(id, blog, value) {
+        // We don't need to normalize the user's input (to prevent HTML injection).
+        // Since we are using one of the EJS's feature (see EJS's <%= %> for more clarifications).
         if (isABlog(blog)) {
-            console.log(blog.body);
             this.__data__[id] = blog;
         }
         else {
             this.__data__[id][blog] = value;
         }
-        // this.__data__[id] = normalizeContentInput(this.__data__[id]);
     },
     /**
      * Delete a specific blog using its ID.
